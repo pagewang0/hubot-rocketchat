@@ -92,6 +92,7 @@ class RocketChatBotAdapter extends Adapter {
     const isLC = (meta.roomType === 'l')
     const user = this.robot.brain.userForId(message.u._id, {
       name: message.u.username,
+      nickname: message.u.name,
       alias: message.alias
     })
     user.roomID = message.rid
