@@ -185,3 +185,18 @@ class RocketChatBotAdapter extends Adapter {
 }
 
 exports.use = (robot) => new RocketChatBotAdapter(robot)
+
+/**
+ *
+ * override driver subscribeToMessages void sub all stream-room-messages
+ */
+driver.subscribeToMessages = function subscribeToMessages() {
+  const _messageCollectionName = 'stream-room-messages';
+  const _messageStreamName = '__bot_messages__';
+
+  return driver.subscribe(_messageCollectionName, _messageStreamName)
+    .then((subscription) => {
+      driver.messages = driver.asteroid.getCollection(_messageCollectionName);
+      return subscription;
+    })
+}
