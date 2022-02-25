@@ -88,7 +88,7 @@ class RocketChatBotAdapter extends Adapter {
     this.robot.logger.info('Filters passed, will receive message')
 
     // Collect required attributes from message meta
-    const isDM = (meta.roomType === 'd')
+    const isDM = (meta.roomType === 'd' || meta.roomType === 'c')
     const isLC = (meta.roomType === 'l')
     const user = this.robot.brain.userForId(message.u._id, {
       name: message.u.username,
