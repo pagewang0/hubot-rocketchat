@@ -192,7 +192,7 @@ exports.use = (robot) => new RocketChatBotAdapter(robot)
  */
 driver.subscribeToMessages = function subscribeToMessages() {
   const _messageCollectionName = 'stream-room-messages';
-  const _messageStreamName = '__bot_messages__';
+  const _messageStreamName = process.env.MESSAGESTREAMNAME || '__bot_messages__';
 
   return driver.subscribe(_messageCollectionName, _messageStreamName)
     .then((subscription) => {
